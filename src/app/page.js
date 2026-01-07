@@ -1,5 +1,5 @@
-"use client";  // Next.js-ს ეუბნება, რომ ეს ფაილი ბრაუზერში უნდა ამუშავდეს (კლიენტის მხარეს).
-import { useState, useEffect } from "react";   // React-ის ჰუკები სთეითისა და გვერდითი ეფექტებისთვის.
+"use client";   
+import { useState, useEffect } from "react";   // React-ის ჰუკები
 import Link from "next/link";  
 import Image from "next/image";  
 

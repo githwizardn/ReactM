@@ -13,7 +13,7 @@ export default function Footer() {
            <span className="hover:underline cursor-pointer">Interest-Based Ads</span>
         </div>
         
-         <p>© 1996-2021, Amazon.com, Inc. or its affiliates</p>
+         <p>© 1996-2026, Amazon.com, Inc. or its affiliates</p>
       </div>
     </footer>
   );
