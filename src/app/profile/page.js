@@ -2,10 +2,9 @@ import Image from 'next/image';
 
 export default async function ProfilePage() {
   try {
-    // მონაცემების წამოღება შეცდომების მართვით
     const res = await fetch('https://fakestoreapi.com/users/3', {
-      next: { revalidate: 3600 } //   მონაცემების განახლება საათში ერთხელ
-    });
+  cache: 'no-store' 
+});
 
     // თუ API-მ HTML ან შეცდომა დააბრუნა
     if (!res.ok) {
