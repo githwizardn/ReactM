@@ -1,13 +1,24 @@
 import Image from 'next/image';
 
-
+// Force dynamic ensures Vercel doesn't try to bake an API error into your static build
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function ProfilePage() {
   try {
+    // We use a timeout signal to prevent the build from hanging if the API is slow
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
+
     const res = await fetch('https://fakestoreapi.com/users/3', {
-      cache: 'no-store' 
+      cache: 'no-store',
+      signal: controller.signal,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
+
+    clearTimeout(timeoutId);
 
     if (!res.ok) {
       throw new Error('API Response was not OK');
@@ -39,17 +50,12 @@ export default async function ProfilePage() {
       </div>
     );
   } catch (error) {
-    // If the API is down or slow, the user sees this instead of a broken page
+    console.error("Profile Fetch Error:", error);
     return (
       <div className="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md mt-10 text-center">
-        <h1 className="text-2xl font-bold text-red-600 mb-4">Profile Temporary Unavailable</h1>
-        <p className="text-gray-600">The external API is currently busy. Please refresh the page in a few seconds.</p>
-        <button 
-          onClick="window.location.reload()" 
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
-        >
-          Try Again
-        </button>
+        <h1 className="text-2xl font-bold text-red-600 mb-4">Profile Temporarily Unavailable</h1>
+        <p className="text-gray-600">The external API is currently unresponsive. Please try refreshing the browser.</p>
+        <p className="mt-4 text-sm text-gray-400">Technical details: Remote API Connection Timeout</p>
       </div>
     );
   }
