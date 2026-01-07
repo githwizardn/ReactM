@@ -3,11 +3,11 @@ import Image from 'next/image';
 
 export default async function ProfilePage() {
   try {
-   const res = await fetch('https://fakestoreapi.com/users/3', {
-  next: { revalidate: 3600 } 
-});
 
-    // თუ API-მ HTML ან შეცდომა დააბრუნა
+    const res = await fetch('https://fakestoreapi.com/users/3', {
+      cache: 'no-store' 
+    });
+
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
@@ -24,7 +24,6 @@ export default async function ProfilePage() {
           <p><strong>Phone:</strong> {user.phone}</p>
         </div>
 
-        {/* სურათი */}
         <div className="flex flex-col items-center p-5 md:ml-6">
           <h1 className="text-2xl font-bold mb-4 text-blue-800 md:hidden">User Profile</h1>
           <Image 
@@ -33,13 +32,12 @@ export default async function ProfilePage() {
             width={150}
             height={150}
             className="rounded-full mb-4 object-cover border-4 border-blue-500 shadow-lg"
-            priority // სურათის სწრაფი ჩატვირთვისთვის
+            priority 
           />
         </div>
       </div>
     );
   } catch (error) {
-    // თუ ფეჩინგისას მოხდა შეცდომა (მაგ. API გამორთულია)
     return (
       <div className="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md mt-10 text-center">
         <h1 className="text-2xl font-bold text-red-600 mb-4">Error Loading Profile</h1>
