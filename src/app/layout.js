@@ -4,8 +4,11 @@ import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer"; 
 
  export const metadata = {
-  title: "My eCommerce Store",
-  description: "Midterm Project",
+  title: "ReactM | Premium eCommerce Store",
+  description: "Discover the best products at ReactM. Fast shipping, secure payments, and a wide variety of items from electronics to fashion.",
+  keywords: "eCommerce, React, Next.js, Shopping, FakeStore, Nodo's Project",
+  authors: [{ name: "Nodo" }],
+  viewport: "width=device-width, initial-scale=1",
 };
 
 // განსაზღვრავს მთავარ Layout ფუნქციას, რომელიც იღებს { children }-ს.  იმიტომ, რომ Layout არის "ჩარჩო", ხოლო children არის ის კონკრეტული გვერდი, რომელზეც მომხმარებელი იმყოფება.
