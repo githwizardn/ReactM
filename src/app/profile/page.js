@@ -1,21 +1,25 @@
-import Image from 'next/image';
+"use client"; // გადაგვყავს კლიენტის მხარეს, რომ Vercel-ის ბილდი არ გაფუჭდეს
 
-// This is the most important line. It tells Vercel: 
-// "Do NOT try to build this page during deployment. Wait until a user opens it."
-export const dynamic = 'force-dynamic';
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
-export default async function ProfilePage() {
-  // 1. Fetch data with no caching
-  const res = await fetch('https://fakestoreapi.com/users/3', { cache: 'no-store' });
-  
-  // 2. Simple check: If the API fails, show a basic message
-  if (!res.ok) {
-    return <div className="p-10 text-center">API is busy. Please refresh.</div>;
-  }
+export default function ProfilePage() {
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(false);
 
-  const user = await res.json();
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/users/3")
+      .then((res) => {
+        if (!res.ok) throw new Error();
+        return res.json();
+      })
+      .then((data) => setUser(data))
+      .catch(() => setError(true));
+  }, []);
 
-  // 3. Simple Render
+  if (error) return <div className="p-10 text-center text-red-500">Failed to load profile. Please refresh.</div>;
+  if (!user) return <div className="p-10 text-center">Loading profile...</div>;
+
   return (
     <div className="flex flex-col md:flex-row max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md mt-10 items-center">
       <div className="flex-1 space-y-4">
