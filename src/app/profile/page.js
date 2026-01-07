@@ -1,9 +1,10 @@
+export const dynamic = 'force-dynamic';
 import Image from 'next/image';
 
 export default async function ProfilePage() {
   try {
-    const res = await fetch('https://fakestoreapi.com/users/3', {
-  cache: 'no-store' 
+   const res = await fetch('https://fakestoreapi.com/users/3', {
+  next: { revalidate: 3600 } 
 });
 
     // თუ API-მ HTML ან შეცდომა დააბრუნა
