@@ -17,7 +17,7 @@ export const metadata = {
   openGraph: {
     title: "ReactM | Modern eCommerce Experience",
     description: "Shop the latest trends with our high-performance React application.",
-    url: "https://react-ocl921vh9-githwizardns-projects.vercel.app/", 
+    url: "https://react-m-five.vercel.app/", 
     siteName: "ReactM Store",
     images: [
       {
