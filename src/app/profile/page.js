@@ -1,15 +1,16 @@
-export const dynamic = 'force-dynamic';
 import Image from 'next/image';
+
+
+export const dynamic = 'force-dynamic';
 
 export default async function ProfilePage() {
   try {
-
     const res = await fetch('https://fakestoreapi.com/users/3', {
       cache: 'no-store' 
     });
 
     if (!res.ok) {
-      throw new Error('Failed to fetch data');
+      throw new Error('API Response was not OK');
     }
 
     const user = await res.json();
@@ -38,10 +39,17 @@ export default async function ProfilePage() {
       </div>
     );
   } catch (error) {
+    // If the API is down or slow, the user sees this instead of a broken page
     return (
       <div className="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md mt-10 text-center">
-        <h1 className="text-2xl font-bold text-red-600 mb-4">Error Loading Profile</h1>
-        <p className="text-gray-600">The server could not retrieve user data at this moment. Please try again later.</p>
+        <h1 className="text-2xl font-bold text-red-600 mb-4">Profile Temporary Unavailable</h1>
+        <p className="text-gray-600">The external API is currently busy. Please refresh the page in a few seconds.</p>
+        <button 
+          onClick="window.location.reload()" 
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+        >
+          Try Again
+        </button>
       </div>
     );
   }
