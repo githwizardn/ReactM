@@ -124,7 +124,7 @@ export default function RegisterPage() {
           <button 
             type="button" 
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-[38px] text-xs text-blue-600 font-semibold hover:underline"
+            className="absolute right-3 top-9.5 text-xs text-blue-600 font-semibold hover:underline"
           >
             {showPassword ? "Hide" : "Show"}
           </button>
