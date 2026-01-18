@@ -9,22 +9,22 @@ import Footer from "@/components/footer/footer";
 };
 
 export const metadata = {
-  title: "ReactM | Premium eCommerce Store",
-  description: "Explore ReactM for a seamless shopping experience. High-quality electronics, jewelry, and fashion with real-time cart management.",
+  title: "Nebula Shop | Premium eCommerce Store",
+  description: "Explore Nebula Shop for a seamless shopping experience. High-quality electronics, jewelry, and fashion with real-time cart management.",
   keywords: "Next.js, eCommerce, React, Tailwind CSS, Shopping Cart",
   
   // Open Graph (Facebook, LinkedIn, Discord)
   openGraph: {
-    title: "ReactM | Modern eCommerce Experience",
+    title: "Nebula Shop | Modern eCommerce Experience",
     description: "Shop the latest trends with our high-performance React application.",
     url: "https://react-m-five.vercel.app/", 
-    siteName: "ReactM Store",
+    siteName: "Nebula Shop Store",
     images: [
       {
         url: "/og-image.jpg", 
         width: 1200,
         height: 630,
-        alt: "ReactM Storefront Preview",
+        alt: "Nebula Shop Storefront Preview",
       },
     ],
     locale: "en_US",
@@ -34,7 +34,7 @@ export const metadata = {
   // Twitter Tags
   twitter: {
     card: "summary_large_image",
-    title: "ReactM | Premium eCommerce Store",
+    title: "Nebula Shop | Premium eCommerce Store",
     description: "Explore the best products with Next.js performance.",
     images: ["/og-image.jpg"],
   },
