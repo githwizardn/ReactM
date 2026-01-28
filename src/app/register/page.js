@@ -20,7 +20,14 @@ const schema = yup.object().shape({
     .matches(/^[A-Za-z]+$/, "Only letters are allowed")  
     .min(4)
     .max(20),
-  age: yup.number().typeError("Age must be a number").required().min(18).max(100),
+  age: yup.number()
+  .transform((value, originalValue) => originalValue === "" ? undefined : value)
+  .typeError("Age must be a number")
+  .required("Age is required")
+  .min(18, "Must be at least 18")
+  .max(100),
+
+  
   email: yup.string().email("Invalid email").required(),
   password: yup.string().required().min(6).max(12)
     .matches(/[A-Z]/, "Uppercase required")
