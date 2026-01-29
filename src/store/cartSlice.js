@@ -1,4 +1,3 @@
-// src/store/cartSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -14,7 +13,7 @@ const cartSlice = createSlice({
     setCart: (state, action) => {
       state.items = action.payload;
     },
-    // Add this action to fix your build error
+    // Add this action to fix build error
     addToCart: (state, action) => {
       const existingItem = state.items.find((item) => item.id === action.payload.id);
       if (existingItem) {
@@ -57,7 +56,7 @@ const cartSlice = createSlice({
   },
 });
 
-// MAKE SURE addToCart IS IN THIS LIST
+
 export const { 
   setCart, 
   addToCart, 
@@ -70,7 +69,7 @@ export const {
 export const selectCartItems = (state) => state.cart.items;
 export const selectDeletedItems = (state) => state.cart.deletedItems;
 export const selectTotalQuantity = (state) => 
-  state.cart.items.reduce((total, item) => total + item.quantity, 0); // Memoized Selectors
+  state.cart.items.reduce((total, item) => total + item.quantity, 0); 
 export const selectTotalPrice = (state) => 
   state.cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
 
